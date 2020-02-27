@@ -77,7 +77,6 @@ function getCookie(nombre){
 }
 
 function deleteCookie(nombre){
-    document.getElementById("pag").innerHTML = "<h4>Se elimino la cookie!!</h4>";
     setCookie(nombre,"",0);
 
 }
