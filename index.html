@@ -9,12 +9,13 @@
     <title>Iniciar Sesión</title>
 </head>
 <body onload="inicializar()">
-<form method="POST" action="">
   <section class="form-register">
     <center>
       <h5 id="pag" class="regis"></h5>
-      <h4>Iniciar Sesión</h4>
     </center>
+    <div id="ocultar">
+<form method="POST" action="">
+      <h4>Iniciar Sesión</h4>
         *Usuario:<br> <input class="controls1" type="text" id="Usuario" placeholder="Correo o Telefono.." required><br>
         *Contraseña:<br> <input class="controls" type="password" name="password" id="password" placeholder="Contraseña..." required>
         <button class="btn" type="button" onclick="mostrarContraseña()">Ver</button>
@@ -24,6 +25,7 @@
         <h5 id="logOut"></h5>
   </section>
 </form>
+</div>
 <script src="js/js.js"></script>
 </body>
 </html>

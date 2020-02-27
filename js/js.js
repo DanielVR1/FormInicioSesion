@@ -11,16 +11,14 @@ function validar() {
         comprob = false;
     }
 
-    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8}$/.test(contraseña)){
+    //if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8}$/.test(contraseña)){
+    if(/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8}$/.test(contraseña)){
         comprob = true;
     }else{
         alert("Contraseña incorrecta.");
         comprob = false;
     }
-
-    if(comprob == true){
-        confirmarCookie();
-    }
+    comprarInicioSesion();
 }
 
 function mostrarContraseña(){
@@ -37,6 +35,9 @@ function inicializar(){
     var btn;
     btn = document.getElementById("botones");
     btn.addEventListener("click", validar);
+    if(getCookie("logeado") == "Logeado Correctamente"){
+        PaginaWeb();
+    }
 }
 
 function pasarPag(){
@@ -81,23 +82,26 @@ function deleteCookie(nombre){
 
 }
 
-function confirmarCookie(){
-    var usu = document.getElementById('Usuario').value;
-    var con = document.getElementById('password').value;
-    var array = document.cookie.split("=");
-    for ( var i=0;i<array.length;i++){
-    if(usu == array[i] && con == array[i+1]){
-        document.getElementById("pag").innerHTML = "<h4>¡¡Sesión Iniciada Correctamente!!</h4>";
-        pasarPag();
-        var n = "Logeado Correctamente";
-        var x = document.getElementById("Usuario").value;
-        tiempo = 1;
-        setCookie(n,x,tiempo);
-        break;
-    }else{
-        document.getElementById("pag").innerHTML = "<h4>¡¡ERROR!!</h4>";
-
-    }
-
+function cerrarSesion(){
+    deleteCookie("logeado");
+    document.getElementById("ocultar").style.display = "block";
+    document.getElementById("password").value = '';
 }
+
+function comprarInicioSesion(){
+    var usuario = document.getElementById('Usuario').value;
+    var contraseña = document.getElementById('password').value;
+    if(usuario == getCookie("email") && contraseña == getCookie("contraseña")){
+        var x = "Logeado Correctamente";
+        tiempo = 1;
+        setCookie("logeado",x,tiempo);
+        PaginaWeb();
+    }
+}
+
+function PaginaWeb(){
+    if(getCookie("logeado") == "Logeado Correctamente"){
+        document.getElementById("pag").innerHTML = "<h4>Estas correctamente registrado, "+getCookie("nombre") + "</h4><br> <button class='boton' onclick='cerrarSesion()'>Cerrar Sesion</button>";
+        document.getElementById("ocultar").style.display = "none";
+    }
 }
