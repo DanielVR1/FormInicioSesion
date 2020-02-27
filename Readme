@@ -1,0 +1,5 @@
+IMPORTANTE:
+  -Cuando te logeas correctamente se crea la cookie, si cierras sesion se elimina la cookie de haberte logeado y si vuelves a iniciar
+  sesion te crea la cookie pero no aparece el innerHTML si no actualizas la pagina.
+  
+  -Si se te ocurre alguna manera de que lo pueda solucionar, avisame y lo intento solucionar.
